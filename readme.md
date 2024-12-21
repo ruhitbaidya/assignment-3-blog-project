@@ -74,11 +74,10 @@ The backend features secure authentication with JWT, role-based authorization, a
 #### Authentication Endpoints
 
 Admin Information
+
+```
 {
 "email": "john@example3.com",
 "password": "securepassword"
 }
-
-```
-
 ```
