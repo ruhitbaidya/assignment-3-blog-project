@@ -62,17 +62,13 @@ The Blog Project Backend is a full-fledged API designed for a blogging platform.
 ```bash
 git clone https://github.com/ruhitbaidya/assignment-3-blog-project.git
 
-
-
-Admin Information
-
 ```
 
+### Admin Information
+
+```
 {
 "email": "john@example3.com",
 "password": "securepassword"
 }
-
-```
-
 ```
