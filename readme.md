@@ -1,83 +1,78 @@
-# Blog Project - Backend
+# Blog Project Backend
 
-## Overview
+## Project Overview
 
-This is a backend for a blogging platform that allows users to write, update, and delete their blogs, with role-based access control. It includes two main roles:
+The Blog Project Backend is a full-fledged API designed for a blogging platform. The platform allows users to create, read, update, and delete their own blogs, while administrators have special privileges for managing users and blogs.
 
-- **Admin**: Can manage users and blogs, including deleting blogs and blocking users.
-- **User**: Can create, update, and delete their own blogs.
+### Key Features:
 
-The backend features secure authentication with JWT, role-based authorization, and a public API to view blogs with search, sort, and filter functionalities.
+1. **User Authentication & Authorization**:
 
-## Technologies Used
+   - **User Registration**: Users can register with a name, email, and password.
+   - **User Login**: Once registered, users can log in to the platform using their credentials. On successful login, a JWT token is generated for authentication in subsequent API calls.
+   - **Role-Based Access Control**: There are two types of users in the system:
+     - **Admin**: Admins have elevated privileges. They can block users, delete any blog, and manage other users' blogs.
+     - **User**: Regular users can only create, update, and delete their own blogs. They have no administrative privileges.
 
-- **TypeScript**
-- **Node.js**
-- **Express.js**
-- **MongoDB** (with Mongoose)
+2. **Blog Management**:
 
-## Features and Requirements
+   - Users can create new blogs with a title and content.
+   - Users can update their existing blogs and delete blogs they created.
+   - Admins can delete any blog or block users as needed.
 
-### 1. User Roles
+3. **Search, Filter, and Sort Blogs**:
 
-#### Admin
+   - **Search**: Users can search blogs by title or content.
+   - **Sort**: Blogs can be sorted by fields like `createdAt` or `title` (ascending or descending).
+   - **Filter**: Users can filter blogs by the author's ID.
 
-- Admins are manually created in the database with predefined credentials.
-- Can delete any blog.
-- Can block users by updating the `isBlocked` field.
-- Cannot update any blog.
+4. **Admin Privileges**:
+   - Admins have the ability to block users and delete any blog, even if it was created by another user.
 
-#### User
+### Technologies Used:
 
-- Can register and log in.
-- Can create blogs (only when logged in).
-- Can update and delete their own blogs.
-- Cannot perform admin actions.
+- **Node.js**: JavaScript runtime used for server-side development.
+- **Express.js**: Framework for building RESTful APIs.
+- **MongoDB**: NoSQL database to store user and blog data.
+- **Mongoose**: ODM (Object Data Modeling) library for MongoDB and Node.js.
+- **JWT (JSON Web Token)**: Secure method for authenticating users.
+- **Bcrypt.js**: Library used to hash passwords and securely compare passwords.
 
-### 2. Authentication & Authorization
+### Project Structure:
 
-#### Authentication
+- **models**: Contains the database schemas for users and blogs.
+- **routes**: Defines the API routes for user and blog operations.
+- **controllers**: Contains the logic for handling user and blog CRUD operations.
+- **middleware**: Includes middleware for authentication, authorization, and input validation.
+- **utils**: Utility functions, such as error handling.
 
-- Users must log in to perform write, update, and delete operations.
+### How It Works:
 
-#### Authorization
+1. **User Authentication**: When a user registers, their details are saved in the database. During login, their credentials are validated, and a JWT token is generated for further requests.
+2. **Blog Operations**: Users can create, update, and delete their own blogs. Admins have the ability to manage all blogs and block users.
+3. **Filtering and Sorting**: Users can search blogs based on a search term, sort them by created date or title, and filter by author.
+4. **Admin Actions**: Admins can block a user and delete any blog post.
 
-- The system distinguishes between **Admin** and **User** roles, with different permissions for each role.
+---
 
-### 3. Blog API
+## Getting Started
 
-#### Public API for Reading Blogs
+### Clone the Repository
 
-- Fetches blogs with options to search by title or content, sort by specific fields, and filter by author ID.
+```bash
+git clone https://github.com/ruhitbaidya/assignment-3-blog-project.git
 
-#### Blog Model
 
-- **title**: The title of the blog post.
-- **content**: The main body or content of the blog post.
-- **author**: Reference to the user (author) of the blog post.
-- **isPublished**: A flag indicating whether the blog post is published. Defaults to true.
-- **createdAt**: Timestamp when the blog was created.
-- **updatedAt**: Timestamp of the last update to the blog.
-
-#### User Model
-
-- **name**: The full name of the user.
-- **email**: The email address for authentication.
-- **password**: Securely stored password.
-- **role**: The user's role, either "admin" or "user". Default is "user".
-- **isBlocked**: A flag indicating if the user is blocked. Defaults to `false`.
-- **createdAt**: Timestamp when the user was created.
-- **updatedAt**: Timestamp of the last update to the user.
-
-### 4. API Endpoints
-
-#### Authentication Endpoints
 
 Admin Information
 
 ```
+
 {
 "email": "john@example3.com",
 "password": "securepassword"
 }
+
+```
+
 ```
